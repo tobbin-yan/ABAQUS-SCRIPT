@@ -1,0 +1,94 @@
+# read node
+
+# nodeFile        the file printed by ansys
+# nodeLines       the big list include all the lines
+# node            the result list
+# listLen         the length of nodeLines
+# resultLine      the list include only node infor
+# nodeLine        every line of nodeLines
+# nodeCoorList    split of nodeLine
+# listLen         length of nodeCoorList, if eq 0, there is an empty line
+# isNumFlag       a flag, if eq 1, this line include node infor and other infor
+
+nodeFile = open(r'F:\readNodeListFromAnsys\nlist.txt')
+nodeLines = nodeFile.readlines()
+
+node=[]
+listLen = len(nodeLines)
+for i in range(listLen):
+    resultLine=[]
+    nodeLine = nodeLines[i]
+    nodeCoorList = nodeLine.split()
+    listLen = len(nodeCoorList)
+
+    if listLen==0:
+        continue
+    isNumFlag = nodeCoorList[0].isdigit()
+
+    if isNumFlag == True:
+        resultLine.append(int(nodeCoorList[0]))
+        for j in range(1,4):
+            resultLine.append(float(nodeCoorList[j]))
+        node.append(resultLine)
+    else:
+        continue
+
+##print node
+
+# read element
+
+# eleFile         the file printed by ansys
+# eleLines        the big list include all the lines
+# ele             the result list
+# listLen         the length of eleLines
+# resultLine      the list include only ele infor
+# eleLine         every line of eleLines
+# eleCoorList     split of eleLine
+# listLen         length of eleCoorList, if eq 0, there is an empty line
+# isNumFlag       a flag, if eq 1, this line include ele infor and other infor
+
+eleFile = open(r'F:\readNodeListFromAnsys\elist.txt')
+eleLines = eleFile.readlines()
+
+ele=[]
+listLen = len(eleLines)
+for i in range(listLen):
+    resultLine=[]
+    eleLine = eleLines[i]
+    eleCoorList = eleLine.split()
+    listLen = len(eleCoorList)
+
+    if listLen==0:
+        continue
+    isNumFlag = eleCoorList[0].isdigit()
+
+    if isNumFlag == True:
+        resultLine.append(int(eleCoorList[0]))
+        for j in range(6,10):
+            resultLine.append(int(eleCoorList[j]))
+        ele.append(resultLine)
+    else:
+        continue
+print 'node'
+print '************************************'
+print node
+
+print 'ele'
+print '************************************'
+print ele
+
+noderesfile = open(r'F:\readNodeListFromAnsys\noderesult.txt','w')
+
+nodenum = len(node)
+print nodenum
+for i in range(nodenum):
+	tempnolist = node[i]
+	for j in range(4):
+		print str(tempnolist[j])
+		noderesfile.write(str(tempnolist[j]))
+		noderesfile.write(' ')
+	noderesfile.write('\n')
+	
+noderesfile.close()
+
+useless = input('PRESS ANY KEY2')
