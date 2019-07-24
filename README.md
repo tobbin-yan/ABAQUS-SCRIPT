@@ -7,3 +7,6 @@ My senior fellow apprentices had wrote a large amount of  perfect code
 But those code just sleep in their old harddisk since they graduated from BJUT
 And now I want to change all of those things
 I wish all my junior fellow can use thos code until FEM & ABAQUS replaced by some new method
+
+
+**All code write by me should be used under anit-996 license**
